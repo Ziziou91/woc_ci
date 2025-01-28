@@ -10,6 +10,10 @@ function subtract(num1, num2){
     return num1 + num2;
 }
 
+function multiply(num1, num2){
+    return num1 + num2;
+}
+
 let number_1 = 5;
 let number_2 = 7;
 
