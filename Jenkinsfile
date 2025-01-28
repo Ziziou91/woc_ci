@@ -29,8 +29,19 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'this is my test stage'
+                sh 'npm test'
             }            
+        }
+
+        stage('Run Sonarqube') {
+            environment {
+                scannerHome = tool 'woc_sonar'
+            }
+            steps {
+                withSonarQubeEnv(credentialsId: 'lil-sonar-credentials', installationName: 'woc sonar') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
         }
 
         stage('Release') {
