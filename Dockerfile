@@ -12,5 +12,8 @@ RUN npm install
 # Copy the rest of the application files
 COPY . .
 
+# Expose the application port (change as needed)
+EXPOSE 8080
+
 # Command to run the application
 CMD ["node", "main.js"]
