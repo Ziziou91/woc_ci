@@ -1,4 +1,4 @@
-const { add, subtract } = require('../main')
+const { add, subtract } = require('../myMath');
 const assert = require('assert');
 
 describe('add', () => {
@@ -6,11 +6,11 @@ describe('add', () => {
         const result = add(3, 4);
         assert.equal(result, 7, "are equal")
     })
-})
+});
 
 describe('subtract', () => {
     it('should return 1 when subtracting 3 from 4', () => {
         const result = subtract(4, 3);
         assert.equal(result, 1, "are equal")
     })
-})
+});

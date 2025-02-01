@@ -1,27 +1,18 @@
-function square(number) {
-    return number * number;
-  }
+const express = require('express');
+const app = express();
 
-function add(num1, num2){
-    return num1 + num2;
-}
+app.set('view engine' , 'ejs');
 
-function subtract(num1, num2){
-    return num1 - num2;
-}
+app.use(express.static('public'));
 
-function multiply(num1, num2){
-    return num1 + num2;
-}
+app.get('/' , function(req , res){
 
-let number_1 = 5;
-let number_2 = 7;
+  res.render("index");
 
+});
 
-console.log("============Main.js============");
+app.listen(3000 , function(){
+    console.log('Your app is ready and listening on port 3000');
+  });
 
-console.log("Square of 4 is: " + square(4));
-console.log(number_1.toString() + " + " +  number_2.toString() + " is: " + add(number_1, number_2));
-console.log(number_1.toString() + " - " +  number_2.toString() + " is: " + subtract(number_1, number_2));
-
-module.exports = { add, subtract };
+module.exports = app;
