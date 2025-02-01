@@ -1,7 +1,7 @@
 {
   "name": "woc_ci",
   "version": "1.0.0",
-  "description": "Repo created to test using Jenkins for: - Linting - ESLint - Testing: Mocha - Static Code Analysis: SonarQube",
+  "description": "Repo created as part of Weapon of Choice DevOps training at Solirius",
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
@@ -12,6 +12,8 @@
   "dependencies": {
     "ejs": "^3.1.9",
     "express": "^4.14.0",
-    "mocha": "^11.1.0"
+    "faker": "^4.1.0",
+    "mocha": "^11.1.0",
+    "mongoose": "^8.1.3"
   }
 }
