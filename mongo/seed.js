@@ -1,4 +1,4 @@
-const Post = require('post');
+const Post = require('./post');
 const mongoose = require('mongoose');
 const faker = require('faker');
 

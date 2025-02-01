@@ -4,6 +4,7 @@
   "description": "Repo created as part of Weapon of Choice DevOps training at Solirius",
   "main": "main.js",
   "scripts": {
+    "postinstall": "node mongo/seed.js",
     "start": "node main.js",
     "test": "mocha test/test.js"
   },
