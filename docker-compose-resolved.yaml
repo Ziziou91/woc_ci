@@ -1,0 +1,60 @@
+name: repo
+services:
+  app:
+    depends_on:
+      mongodb:
+        condition: service_started
+        required: true
+    environment:
+      DB_HOST: mongodb
+      DB_NAME: posts
+      DB_PASSWORD: abcd
+      DB_PORT: "27017"
+      DB_USER: root
+      MONGODB_DATABASE: posts
+      MONGODB_DOCKER_PORT: "27017"
+      MONGODB_LOCAL_PORT: "7017"
+      MONGODB_PASSWORD: abcd
+      MONGODB_USER: root
+      NODE_DOCKER_PORT: "8080"
+      NODE_LOCAL_PORT: "6868"
+    image: zizou91/woc_app
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "6868"
+        protocol: tcp
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+  mongodb:
+    environment:
+      MONGODB_DATABASE: posts
+      MONGODB_DOCKER_PORT: "27017"
+      MONGODB_LOCAL_PORT: "7017"
+      MONGODB_PASSWORD: abcd
+      MONGODB_USER: root
+      NODE_DOCKER_PORT: "8080"
+      NODE_LOCAL_PORT: "6868"
+    image: mongo:5.0.2
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 27017
+        published: "7017"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: db
+        target: /data/db
+        volume: {}
+networks:
+  default:
+    name: repo_default
+volumes:
+  db:
+    name: repo_db
