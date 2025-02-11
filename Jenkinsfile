@@ -5,14 +5,12 @@ pipeline {
         nodejs 'Node-23' // The name must match your Jenkins configuration
     }
 
-    stages {
+    dir("my-app") {
+        stages {
         stage('Install dependencies') {
             steps {
-                dir("my-app") {
-                    echo 'Installing dependecies...'
-                    sh 'rm -rf node_modules package-lock.json && npm install'
-                }
-  
+                echo 'Installing dependecies...'
+                sh 'rm -rf node_modules package-lock.json && npm install'
             }
         }
 
@@ -30,9 +28,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                dir("my-app") {
-                    sh 'npm test'
-                }
+                sh 'npm test'
             }            
         }
 
@@ -53,4 +49,7 @@ pipeline {
             }
         }
     }
+
+    }
+    
 } 
