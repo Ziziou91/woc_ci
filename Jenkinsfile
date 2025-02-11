@@ -11,6 +11,7 @@ pipeline {
                     dir("my-app") {
                          echo 'Installing dependecies...'
                         sh 'rm -rf node_modules package-lock.json && npm install'
+                        sh 'npm install --save-dev eslint @eslint/js globals'
                     }
                 }
             }
