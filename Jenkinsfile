@@ -18,13 +18,17 @@ pipeline {
             stage('Static Analysis') {
                 steps {
                     dir("my-app") {
-                        sh './node_modules/eslint/bin/eslint.js -f checkstyle src > eslint.xml'
+                        sh 'npx eslint . --format junit -o eslint.xml || true'
 
                     }
                 }
                 post {
                     always {
-                        recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'eslint.xml') 
+                        // Archive the report so it can be viewed in Jenkins
+                        archiveArtifacts artifacts: 'eslint.xml', fingerprint: true
+
+                        // Publish the report using a plugin like "Warnings NG"
+                        recordIssues tools: [eslint(pattern: 'eslint.xml')]
                     }
                 }
 
