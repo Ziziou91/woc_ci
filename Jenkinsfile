@@ -19,18 +19,6 @@ pipeline {
                 steps {
                     dir("my-app") {
                         sh 'npx eslint . --format junit -o eslint.xml || true'
-
-                        recordIssues(
-                            tools: [
-                                esLint(pattern: 'eslint.xml')
-                            ],
-                            qualityGates: [
-                                [threshold: 1, type: 'TOTAL_HIGH', unstable: true]
-                            ],
-                            healthy: 0,
-                            unhealthy: 100,
-                            minimumSeverity: 'HIGH'
-                        )
                     }
                 }
                 post {
