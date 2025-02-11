@@ -39,7 +39,7 @@ pipeline {
                 }            
             }
 
-            stage('Run Sonarqube') {
+            //stage('Run Sonarqube') {
                 //environment {
                 //    scannerHome = tool 'woc_sonar'
                 //}
@@ -48,7 +48,7 @@ pipeline {
                 //        sh "${scannerHome}/bin/sonar-scanner"
                 //    }
                 //}
-            }
+            //}
 
             stage('Release') {
                 steps {
