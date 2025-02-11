@@ -16,12 +16,6 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
-
         stage('Static Analysis') {
             steps {
                 sh './node_modules/eslint/bin/eslint.js -f checkstyle src > eslint.xml'
@@ -36,7 +30,9 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'npm test'
+                dir("my-app") {
+                    sh 'npm test'
+                }
             }            
         }
 
