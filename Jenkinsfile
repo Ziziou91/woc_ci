@@ -40,14 +40,14 @@ pipeline {
             }
 
             stage('Run Sonarqube') {
-                environment {
-                    scannerHome = tool 'woc_sonar'
-                }
-                steps {
-                    withSonarQubeEnv(credentialsId: 'lil-sonar-credentials', installationName: 'woc sonar') {
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
-                }
+                //environment {
+                //    scannerHome = tool 'woc_sonar'
+                //}
+                //steps {
+                //    withSonarQubeEnv(credentialsId: 'lil-sonar-credentials', installationName: 'woc_sonar') {
+                //        sh "${scannerHome}/bin/sonar-scanner"
+                //    }
+                //}
             }
 
             stage('Release') {
