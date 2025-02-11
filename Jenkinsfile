@@ -8,8 +8,11 @@ pipeline {
     stages {
         stage('Install dependencies') {
             steps {
-                echo 'Installing dependecies...'
-                sh 'rm -rf node_modules package-lock.json && npm install'
+                dir("my-app") {
+                    echo 'Installing dependecies...'
+                    sh 'rm -rf node_modules package-lock.json && npm install'
+                }
+  
             }
         }
 
