@@ -22,8 +22,8 @@ pipeline {
                     }
                 }
                 post {
-                    dir("my-app") {
-                        always {
+                    always {
+                        dir("my-app") {
                             recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'eslint.xml')
                         }
                     }
