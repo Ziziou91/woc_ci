@@ -1,3 +1,5 @@
+import io.jenkins.plugins.analysis.warnings.EsLint
+
 pipeline {
     agent any
 
