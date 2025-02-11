@@ -22,8 +22,10 @@ pipeline {
                     }
                 }
                 post {
-                    always {
-                        recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'eslint.xml')
+                    dir("my-app") {
+                        always {
+                            recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'eslint.xml')
+                        }
                     }
                 }
             }
