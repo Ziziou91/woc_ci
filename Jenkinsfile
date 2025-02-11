@@ -18,7 +18,7 @@ pipeline {
             stage('Static Analysis with Lint') {
                 steps {
                     dir("my-app") {
-                        sh 'npx eslint . -o eslint.xml || true'
+                        sh 'npx eslint . --format checkstyle -o eslint.xml || true'
                     }
                 }
                 post {
