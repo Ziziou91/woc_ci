@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'Node-23' // The name must match your Jenkins configuration
+    }
+
     stages {
         stage('Install dependencies') {
             steps {
