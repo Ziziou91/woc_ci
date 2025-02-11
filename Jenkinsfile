@@ -15,22 +15,25 @@ pipeline {
                 }
             }
 
-            stage('Static Analysis') {
+            stage('Static Analysis with Lint') {
                 steps {
                     dir("my-app") {
                         sh 'npx eslint . --format junit -o eslint.xml || true'
 
+                        recordIssues(
+                            tools: [
+                                esLint(pattern: 'eslint.xml')
+                            ],
+                            qualityGates: [
+                                [threshold: 1, type: 'TOTAL_HIGH', unstable: true]
+                            ],
+                            healthy: 0,
+                            unhealthy: 100,
+                            minimumSeverity: 'HIGH'
+                        )
                     }
                 }
-                post {
-                    always {
-                        // Archive the report so it can be viewed in Jenkins
-                        archiveArtifacts artifacts: 'eslint.xml', fingerprint: true
-
-                        // Publish the report using a plugin like "Warnings NG"
-                        recordIssues tools: [checkStyle(pattern: 'eslint.xml', id: 'eslint', name: 'ESLint')]
-                    }
-                }
+                
 
             }
 
