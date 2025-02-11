@@ -1,5 +1,3 @@
-import io.jenkins.plugins.analysis.warnings.EsLint
-
 pipeline {
     agent any
 
@@ -35,8 +33,11 @@ pipeline {
                         )
                     }
                 }
-                
-
+                post {
+                    always {
+                        recordIssues enabledForFailure: true, aggregatingResults: true, tool: checkStyle(pattern: 'eslint.xml')
+                    }
+                }
             }
 
             stage('Test') {
