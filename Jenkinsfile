@@ -28,7 +28,7 @@ pipeline {
                         archiveArtifacts artifacts: 'eslint.xml', fingerprint: true
 
                         // Publish the report using a plugin like "Warnings NG"
-                        recordIssues tools: [eslint(pattern: 'eslint.xml')]
+                        recordIssues tools: [checkStyle(pattern: 'eslint.xml', id: 'eslint', name: 'ESLint')]
                     }
                 }
 
